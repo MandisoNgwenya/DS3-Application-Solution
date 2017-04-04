@@ -1,0 +1,84 @@
+﻿@model Application.ClientUI.Models.DeviceModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DeviceModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.serialNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serialNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.technician)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.technician)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerIdNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerIdNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeviceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeviceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datein)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datein)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

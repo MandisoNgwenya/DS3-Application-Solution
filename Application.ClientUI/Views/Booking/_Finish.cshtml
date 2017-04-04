@@ -1,0 +1,45 @@
+﻿<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - iNFINITY</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+             
+                TempData["UserID"] = model.Id;
+<div class="jumbotron">
+
+@Session["IdentityNumber"]  
+    @TempData["Name"]
+    @TempData["test1"]
+    @TempData["Surname"]
+
+    @TempData["UserID"]
+    @TempData["Device"]
+
+    @TempData["Address"]
+    @TempData["Country"]
+
+
+
+
+    @Session["Name"]
+    @TempData["Surname"]
+
+    @TempData["JobCard"]
+    @Session["IdentityNumber"]
+    @TempData["CellNo"]
+    @TempData["Address"]
+    @TempData["Device"]
+    @TempData["Country"] 
+
+    @TempData["AreaCode"]
+    @TempData["Province"] 
+    @TempData["Email"] 
+    @TempData["Date"] 
+    @TempData["DateOfBirth"] 
+    @TempData["Surname"] 
+       
+
+</div>

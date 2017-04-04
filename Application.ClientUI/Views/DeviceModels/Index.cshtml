@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Application.ClientUI.Models.DeviceModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.serialNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.technician)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerIdNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.datein)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateout)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.serialNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.technician)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerIdNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeviceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.datein)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

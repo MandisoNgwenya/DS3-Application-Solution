@@ -1,0 +1,190 @@
+﻿@model Application.ClientUI.Models.RegisterViewModel
+
+
+<div align="center" class="openNav">
+    <span onclick="openNav()">
+        <div class="jumbotron alert-info">
+            <a href="~/Account/Login" class=" btn-dark btn-group-lg btn-block"><span class="glyphicon  glyphicon-log-in">    Already Registered? Login</span></a>
+        </div>
+    </span>
+</div>
+<div class=" jumbotron" align="center">
+
+
+
+
+    <div class="wrapper-xl" align="center">
+
+        <div class="row">
+            <div class="col-md-12" align="center">
+             
+                    <div class="panel panel-success" align="center">
+                        <div class="panel-heading">
+                            <span class="h4">Register</span>
+                        </div>
+                        <div class="panel-body">
+                            <p class="text-muted">Please fill the information to Register</p>
+                            @*<div class="form-group">
+                                <label>Identity Number   <em class="text-muted">(allow 'a-zA-Z0-9', 4-10 length)</em></label>
+                                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" required>
+                            </div>*@
+
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+
+                                @Html.AntiForgeryToken()
+
+                                <hr />
+                                <div class="form-group pull-in clearfix">
+
+                                    <div class="col col-sm-2">
+
+
+                                        @*@Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = " Mr" })*@
+
+                                        <select class="form-control" placeholder="Mr    ">
+                                            <option>Mr</option>
+                                            <option>Miss</option>
+                                            <option>Mrs</option>
+
+                                        </select>
+
+                                       
+                                    </div>
+                                    <div class="col col-sm-3">
+
+
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = " Name " })
+                                    </div>
+
+                                    <div class="col col-sm-3">
+
+
+
+                                        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @placeholder = "Surname" })
+
+                                    </div>
+                                    <div class="col col-sm-4">
+
+
+
+                                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Address" })
+
+                                    </div>
+                                </div>
+                                    <div class="form-group pull-in clearfix">
+
+
+
+                                        <div class="col col-sm-6">
+
+
+
+                                            @Html.TextBoxFor(m => m.Country, new { @class = "form-control", @placeholder = " Country" })
+
+                                        </div>
+
+
+                                        <div class="col col-sm-4">
+
+
+
+
+                                            @Html.TextBoxFor(m => m.Province, new { @class = "form-control", @placeholder = "Province" })
+
+                                        </div>
+                                        <div class="col col-sm-2">
+
+
+
+                                            @Html.TextBoxFor(m => m.AreaCode, new { @class = "form-control", @placeholder = " Area Code" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group pull-in clearfix">
+
+                                        <div class="col col-sm-3">
+
+
+                                            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @placeholder = " Date Of Birth (dd/mm/yy)" })
+                                        </div>
+
+                                        <div class="col col-sm-3">
+
+
+
+                                            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @placeholder = "Something  " })
+
+                                        </div>
+                                        <div class="col col-sm-6">
+
+
+
+                                            @Html.TextBoxFor(m => m.IdentityNumber, new { @class = "form-control", @placeholder = "Identity Number" })
+
+                                        </div>
+                                    </div>
+
+
+                                        <div class="form-group pull-in clearfix">
+
+                                            <div class="col col-sm-6">
+
+
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "example@mail.com" })
+                                            </div>
+
+                                            <div class="col col-sm-6">
+
+
+
+                                                @Html.TextBoxFor(m => m.CellNo, new { @class = "form-control", @placeholder = "Cellphone Number" })
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group pull-in clearfix">
+
+                                            <div class="col col-sm-6">
+
+
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = " Password " })
+                                            </div>
+
+                                            <div class="col col-sm-6">
+
+
+
+                                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = " Confirm Password " })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group" align="right">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" class="btn btn-dark" value="Register" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group pull-in clearfix">
+                                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                                        </div>
+
+                            }
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                            <div class="checkbox">
+                                <label class="i-checks">
+                                    <input type="checkbox" ng-model="agree" required><i></i> I agree to the <a href="#" class="text-info">Terms of Service</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
