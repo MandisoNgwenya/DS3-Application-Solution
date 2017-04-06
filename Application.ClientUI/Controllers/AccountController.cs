@@ -143,6 +143,15 @@ namespace Application.ClientUI.Controllers
         }
 
         //
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult RegisterRole()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ViewBag.Name = new SelectList(db.Roles.ToList(), "Name", "Name");
+            ViewBag.UserName = new SelectList(db.Users.ToList(), "UserName", "UserName");
+            return View();
+        }
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]

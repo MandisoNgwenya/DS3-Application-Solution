@@ -7,12 +7,16 @@
 
 </head>
              
-                TempData["UserID"] = model.Id;
+            
 <div class="jumbotron">
 
-@Session["IdentityNumber"]  
+
+
+Identity Number: <p>@Session["IdentityNumber"] </p> Device <p> @TempData["Device"] </p>
+
+
     @TempData["Name"]
-    @TempData["test1"]
+    
     @TempData["Surname"]
 
     @TempData["UserID"]
@@ -31,7 +35,7 @@
     @Session["IdentityNumber"]
     @TempData["CellNo"]
     @TempData["Address"]
-    @TempData["Device"]
+
     @TempData["Country"] 
 
     @TempData["AreaCode"]

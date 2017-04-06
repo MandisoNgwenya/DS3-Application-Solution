@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Application.ClientUI.Models;
 using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 
 namespace Application.ClientUI.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,14 +20,23 @@ namespace Application.ClientUI.Controllers
 
         public ActionResult Home()
         {
-            return View();
+            string userID = User.Identity.GetUserId();
+            return View(db.BookingViewModels.Where(x => x.Id == userID));
         }
         public ActionResult myBookings()
         {
-            //string userID = User.Identity.GetUserId();
-            //return View(db.BookingViewModels.Where(x => x.Id == userID));
-            return View(db.BookingViewModels.ToList());
+            string userID = User.Identity.GetUserId();
+            return View(db.BookingViewModels.Where(x => x.Id == userID));
+            //return View(db.BookingViewModels.ToList());
         }
+
+
+        //public ActionResult Status()
+        //{
+        //    //var devices
+        //    //return View(db.DeviceModels.Where(x => x.customerIdNumber == cID);
+        //}
+
 
         public ActionResult QuotationsProfile()
         {
@@ -45,16 +56,53 @@ namespace Application.ClientUI.Controllers
 
         }
 
-        public ActionResult myDevices()
+        public ActionResult Status(string searchString)
         {
-            return View();
+            DeviceModel d = new DeviceModel();
+            string Search = searchString; /*= db.Users.Where(x => x.IdentityNumber == d.customerIdNumber).ToString();*/
+         
+       
+            try
+            {
+                var devices = from m in db.DeviceModels
+                              select m;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    devices = devices.Where(s => s.serialNo.Contains(searchString));
+                }
+                return View(devices);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult myDevices( DeviceModel model)
+        {
+            TempData.Keep();
+            var tempID = new DeviceModel();
+            tempID.customerIdNumber = model.customerIdNumber;
+            TempData["IdentityNumber"] = tempID.customerIdNumber;
+
+            string id = TempData["IdentityNumber"].ToString();
+            string UserID = User.Identity.GetUserId();
+            ApplicationUser result = db.Users.Include("IdentityNumber").Where(x => x.IdentityNumber == id && x.Id == UserID).FirstOrDefault();
+            var claims = new List<Claim>();
+
+           
+
+         
+
+            return View(db.DeviceModels.Where(x => x.customerIdNumber == id));
 
 
         }
         public ActionResult Index()
         {
             //var profiles = db.Profiles.Include(p => p.ApplicationUser);
-            return View(db.Profiles.ToList());
+            return View();
             //return View();
         }
     }

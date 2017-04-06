@@ -12,16 +12,31 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Application.ClientUI.Controllers
 {
+    [Authorize]
     public class BookingController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.BookingViewModels.ToList());
-        }
+            string Search = searchString;
+            try
+            {
+                var bookings = from m in db.BookingViewModels
+                              select m;
 
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                   bookings = bookings.Where(s => s.SerialNo.Contains(searchString));
+                }
+                return View(bookings);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
         public ActionResult Wizard(string name, string surname, string n, string IdentityNumber, string title, string address, string country,
             string province, string areacode, string cellno, string dob, string email)
         {
@@ -89,7 +104,7 @@ namespace Application.ClientUI.Controllers
             int size = 10;
             string input = "abcdefghijklmnopqrstuvwxyz0123456789";
             char[] chars = new char[size];
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i <size; i++)
             {
                 chars[i] = input[gen.Next(input.Length)];
             }
@@ -144,11 +159,12 @@ namespace Application.ClientUI.Controllers
                 booking.Province = model.Province;
                 booking.Title = model.Title;
                 booking.DateOfBirth = model.DateOfBirth;
+                booking.SerialNo = model.SerialNo;
                 booking.Id = User.Identity.GetUserId();
 
                 Session["Name"] = model.Name;
                 TempData["Surname"] = model.Surname;
-
+                TempData["SerialNumber"] = model.SerialNo;
                 TempData["JobCard"] = model.JobCard;
                 Session["IdentityNumber"] = model.IdentityNumber;
                 TempData["CellNo"] = model.CellNo;
@@ -309,7 +325,7 @@ namespace Application.ClientUI.Controllers
                 db.DeviceModels.Add(device);
                 db.SaveChanges();
 
-                return RedirectToAction("Bookings");
+                return RedirectToAction("Home","Profile" );
 
 
             }

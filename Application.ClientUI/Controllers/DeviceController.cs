@@ -10,6 +10,7 @@ using Application.ClientUI.Models;
 
 namespace Application.ClientUI.Controllers
 {
+    [Authorize]
     public class DeviceController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -31,7 +32,7 @@ namespace Application.ClientUI.Controllers
             }
             catch
             {
-                return RedirectToAction("Create", "itsModels");
+                return RedirectToAction("Index");
             }
         }
         // GET: Device/Details/5

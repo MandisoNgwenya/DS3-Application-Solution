@@ -10,11 +10,98 @@ using Application.ClientUI.Models;
 
 namespace Application.ClientUI.Controllers
 {
+    [Authorize]
     public class TechnicianController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Technician
+
+
+        public ActionResult Status(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DeviceModel deviceModel = db.DeviceModels.Find(id);
+            if (deviceModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(deviceModel);
+        }
+
+        // POST: Devices/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Status([Bind(Include = "id,serialNo,technician,customerIdNumber,DeviceName,type,datein,dateout,status,Accessories,Description,Deposit,Total,Balance")] DeviceModel deviceModel)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(deviceModel).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Users","Admin" );
+            }
+            return View(deviceModel);
+        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    DeviceModel deviceModel = db.DeviceModels.Find(id);
+        //    if (deviceModel == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(deviceModel);
+        //}
+
+        //// GET: Device/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        // POST: Device/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,serialNo,technician,customerIdNumber,DeviceName,type,Devicemodel,datein,dateout,status")] DeviceModel deviceModel)
+        {
+            if (ModelState.IsValid)
+            {
+                db.DeviceModels.Add(deviceModel);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(deviceModel);
+        }
+        public ActionResult Update(string searchString)
+        {
+            string Search = searchString;
+            try
+            {
+                var devices = from m in db.DeviceModels
+                              select m;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    devices = devices.Where(s => s.serialNo.Contains(searchString));
+                }
+                return View(devices);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
         public ActionResult Index()
         {
             return View(db.TechnicianModels.ToList());

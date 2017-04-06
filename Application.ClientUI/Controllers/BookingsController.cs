@@ -10,6 +10,7 @@ using Application.ClientUI.Models;
 
 namespace Application.ClientUI.Controllers
 {
+    [Authorize]
     public class BookingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

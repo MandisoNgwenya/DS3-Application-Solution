@@ -40,14 +40,14 @@
                                     <div class="col col-sm-2">
 
 
-                                        @*@Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = " Mr" })*@
+                                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = " Suffix" })
 
-                                        <select class="form-control" placeholder="Mr    ">
+                                        @*<select class="form-control" placeholder="Mr    ">
                                             <option>Mr</option>
                                             <option>Miss</option>
                                             <option>Mrs</option>
 
-                                        </select>
+                                        </select>*@
 
                                        
                                     </div>
@@ -104,19 +104,12 @@
 
                                     <div class="form-group pull-in clearfix">
 
-                                        <div class="col col-sm-3">
+                                        <div class="col col-sm-6">
 
 
                                             @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @placeholder = " Date Of Birth (dd/mm/yy)" })
                                         </div>
 
-                                        <div class="col col-sm-3">
-
-
-
-                                            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @placeholder = "Something  " })
-
-                                        </div>
                                         <div class="col col-sm-6">
 
 

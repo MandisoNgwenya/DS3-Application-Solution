@@ -39,7 +39,20 @@ namespace Application.ClientUI.Models
         public string dateout { get; set; }
         [Display(Name = "Status")]
         public string status { get; set; }
-      
+
+
+        [Display(Name = "Accessories")]
+        public string Accessories { get; set; }
+
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+        [Display(Name = "Deposit")]
+        public double Deposit { get; set; }
+        [Display(Name = "Total")]
+        public double Total { get; set; }
+        [Display(Name = "Balance")]
+        public double Balance { get; set; }
+
 
 
     }
